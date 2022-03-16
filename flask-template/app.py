@@ -28,3 +28,8 @@ app = Flask(__name__)
 @app.route('/index')
 def index():
     return "hello world"
+
+@app.route('/captials')
+def capitals():
+    
+    return render_template('capital.hmtl', capitals = capitals)
