@@ -15,8 +15,8 @@
 # ---- YOUR APP STARTS HERE ----
 # -- Import section --
 from flask import Flask
-# from flask import render_template
-# from flask import request
+from flask import render_template
+from flask import request, redirect
 
 
 # -- Initialization section --
@@ -27,4 +27,15 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/index')
 def index():
-    return "hello world"
+    return render_template("index.html")
+
+@app.route('/scorepage', methods=['GET', 'POST'])
+def scorepage():
+    if request.method == 'GET':
+        return redirect("/")
+
+    previous_corrects = ["Santiago", "Nairobi", "Manila"]
+
+    answer = request.form['capital']
+    correct = answer == "Oslo"
+    return render_template('scorepage.html', correct=correct, previous_corrects=previous_corrects)

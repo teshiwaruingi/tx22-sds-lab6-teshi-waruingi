@@ -15,13 +15,23 @@
 -->
 {% extends "base.html" %}
 
-{% block title %}Welcome to the Geography Quiz!{% endblock %}
-
 {% block body %}
-<h1>Quick Quiz</h1>
-<p>What's the capital of Norway?</p>
-<form method="POST" action="/scorepage">
-    <input type="text" name="capital" placeholder="Answer here"/>
-    <input type="submit" value="Submit"/>
-</form>
+    <h1>Your Results</h1>
+    {% if correct == True %}
+        <p>That's right! The capital is Oslo!</p>
+    {% else %}
+        <p>
+            Sorry, that's not quite right.
+            <a href="/">Click here to go back and try again.</a>
+        </p>
+    {% endif %}
+
+    <br/>
+
+    <h2>Your Performance History</h2>
+    {% for capital in previous_corrects %}
+        <p> You got 1 point for knowing {{ capital }} </p>
+    {% endfor %}
+
+    <h3>You have a total of {{ previous_corrects|length + correct }} points so far!</h3>
 {% endblock %}
