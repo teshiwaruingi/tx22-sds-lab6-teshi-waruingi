@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>State Capitals Quiz</title>
+        <link rel="stylesheet" href="../static/css/style.css">
+    </head>
+    <body>
+        <h1>Your Results!</h1>
+        {% for i in eval %}
+            {% if eval[i][0].lower() == eval[i][1].lower() %}
+                <p> CORRECT! </p>
+            {% else %}
+                <p> WRONG: {{eval[i][0]}} is the incorrect capital </p>
+            {% endif %}
+        {% endfor %}
+    </body>
+</html>
